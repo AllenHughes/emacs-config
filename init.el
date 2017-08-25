@@ -28,6 +28,8 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'flatui t)
 
+(setq scheme-program-name   "/usr/local/bin/mit-scheme")
+
 (use-package markdown-mode
   :ensure t
   :mode ("\\.md$" . markdown-mode))
@@ -35,6 +37,12 @@
 (use-package ledger
   :load-path "library/ledger.mode"
   :mode ("\\.ledger$" . ledger-mode))
+
+(use-package geiser
+  :ensure t
+  :config
+  (setq geiser-mit-binary "/usr/local/bin/mit-scheme")
+  (setq geiser-racket-binary "/usr/local/bin/racket"))
 
 (use-package slime
   :load-path "library/slime"
@@ -52,7 +60,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (magit use-package))))
+ '(package-selected-packages (quote (geiser magit use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
