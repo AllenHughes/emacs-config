@@ -19,7 +19,7 @@
 (setq default-frame-alist
       '((width . 88)
 	(height . 71)
-	(font . "Menlo-12")))
+	(font . "SF Mono-12")))
 
 (setq make-backup-files nil)
 
@@ -60,7 +60,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (geiser magit use-package))))
+ '(package-selected-packages (quote (swift-mode geiser magit use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
