@@ -25,10 +25,13 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (ido-mode t)
+(set-variable 'grep-command "grep -irHn ")
 (setq make-backup-files nil)
 (setq ring-bell-function 'ignore)
 (setq c-default-style "bsd"
       c-basic-offset 4)
+(setq scroll-step 3)
+
 
 (if arh-env-osx
     (progn
@@ -69,13 +72,7 @@
 (modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
 
-(defun switch-to-*scratch* ()
-  (interactive)
-  (switch-to-buffer "*scratch*"))
-
-(global-set-key (kbd "<f5>") 'switch-to-*scratch*)
-
-;; Handle super-tabbify (TAB completes, shift-TAB actually tabs)
+;; TAB completes, shift-TAB actually tabs
 (setq dabbrev-case-replace t)
 (setq dabbrev-case-fold-search t)
 (setq dabbrev-upcase-means-case-search t)
@@ -86,6 +83,12 @@
 ;; (setq tab-always-indent 'complete)
 ;; (add-to-list 'completion-styles 'initials t)
 
+(defun switch-to-*scratch* ()
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
+(global-set-key (kbd "<f5>") 'switch-to-*scratch*)
+
 (defun arh-replace-string (FromString ToString)
   "Replace a string without moving point."
   (interactive "sReplace: \nsReplace: %s  With: ")
@@ -93,8 +96,6 @@
     (beginning-of-buffer)
     (replace-string FromString ToString)))
 (global-set-key (kbd "C-x C-r") 'arh-replace-string)
-
-(setq scroll-step 3)
 
 (require 'package)
 (setq package-enable-at-startup nil)
