@@ -118,9 +118,9 @@
   :ensure t
   :mode ("\\.md$" . markdown-mode))
 
-;; (use-package ledger
-;;   :load-path "library/ledger.mode"
-;;   :mode ("\\.ledger$" . ledger-mode))
+(use-package ledger-mode
+  :load-path "library/ledger-mode"
+  :mode ("\\.ledger$" . ledger-mode))
 
 (when arh-env-osx
   (use-package geiser
