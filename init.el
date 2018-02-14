@@ -25,6 +25,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (ido-mode t)
+(setq inhibit-splash-screen t)
 (set-variable 'grep-command "grep -irHn ")
 (setq make-backup-files nil)
 (setq ring-bell-function 'ignore)
@@ -37,7 +38,8 @@
     (progn
       (cua-mode 0)
       (setq mac-command-modifier 'meta)
-      (setq arh-font "SF Mono-11")))
+;;      (setq arh-font "SF Mono-12")))
+      (setq arh-font "inconsolata-14")))
 
 (if arh-env-win32
     (progn
@@ -55,6 +57,7 @@
 (add-to-list 'default-frame-alist (cons 'font arh-font))
 
 (setq fixme-modes '(c++-mode c-mode emacs-lisp-mode ruby-mode lisp-mode scheme-mode swift-mode))
+
 (make-face 'font-lock-fixme-face)
 (make-face 'font-lock-study-face)
 (make-face 'font-lock-important-face)
@@ -109,7 +112,6 @@
 
 (eval-when-compile
  (require 'use-package))
-(require 'diminish)
 (require 'bind-key)
 
 (setq scheme-program-name   "/usr/local/bin/mit-scheme")
@@ -130,7 +132,7 @@
     (setq geiser-racket-binary "/usr/local/bin/racket")))
 
 (use-package slime
-  :load-path "library/slime"
+  :ensure t
   :config
   (require 'slime-autoloads)
   (setq inferior-lisp-program "/usr/local/bin/ccl")
@@ -172,7 +174,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (mmm-mode swift-mode geiser magit use-package))))
+ '(package-selected-packages '(slime mmm-mode swift-mode geiser magit use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
