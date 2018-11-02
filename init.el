@@ -33,13 +33,12 @@
       c-basic-offset 4)
 (setq scroll-step 3)
 
-
 (if arh-env-osx
     (progn
       (cua-mode 0)
       (setq mac-command-modifier 'meta)
 ;;      (setq arh-font "SF Mono-12")))
-      (setq arh-font "inconsolata-14")))
+      (setq arh-font "inconsolata-16")))
 
 (if arh-env-win32
     (progn
@@ -48,11 +47,13 @@
 
 (if arh-env-linux
     (progn
-      (setq arh-font "Liberation Mono-11")))
+      (setq arh-font "Liberation Mono-13")))
 
 (setq default-frame-alist
       '((width . 88)
-	(height . 71)))
+	(height . 71)
+	(ns-transparent-titlebar . t)
+	(ns-appearance . dark)))
 
 (add-to-list 'default-frame-alist (cons 'font arh-font))
 
@@ -75,7 +76,7 @@
 (modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
 
-;; TAB completes, shift-TAB actually tabs
+;; TAB completes, SHIFT-TAB actually add a tab
 (setq dabbrev-case-replace t)
 (setq dabbrev-case-fold-search t)
 (setq dabbrev-upcase-means-case-search t)
@@ -135,7 +136,7 @@
   :ensure t
   :config
   (require 'slime-autoloads)
-  (setq inferior-lisp-program "/usr/local/bin/ccl")
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
   (add-to-list 'slime-contribs 'slime-fancy))
 
 (use-package magit
