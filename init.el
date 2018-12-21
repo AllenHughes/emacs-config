@@ -19,8 +19,6 @@
 	  arh-env-win32 nil
 	  arh-env-osx nil))))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'material t)
 (global-hl-line-mode 1)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -30,15 +28,16 @@
 (setq make-backup-files nil)
 (setq ring-bell-function 'ignore)
 (setq c-default-style "bsd"
-      c-basic-offset 4)
+      c-basic-offset 2)
 (setq scroll-step 3)
+(setq next-screen-context-lines 3)
 
 (if arh-env-osx
     (progn
       (cua-mode 0)
       (setq mac-command-modifier 'meta)
 ;;      (setq arh-font "SF Mono-12")))
-      (setq arh-font "inconsolata-16")))
+      (setq arh-font "InputMono-12")))
 
 (if arh-env-win32
     (progn
@@ -57,12 +56,37 @@
 
 (add-to-list 'default-frame-alist (cons 'font arh-font))
 
-(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode ruby-mode lisp-mode scheme-mode swift-mode go-mode js-mode))
+;; Set up comment tags
+(setq fixme-modes '(c++-mode
+		    c-mode
+		    emacs-lisp-mode
+		    ruby-mode
+		    lisp-mode
+		    scheme-mode
+		    swift-mode
+		    go-mode
+		    js-mode))
 
 (make-face 'font-lock-fixme-face)
 (make-face 'font-lock-study-face)
 (make-face 'font-lock-important-face)
 (make-face 'font-lock-note-face)
+
+(set-face-attribute 'font-lock-fixme-face nil
+		    :foreground "Red"
+		    :slant 'italic)
+(set-face-attribute 'font-lock-study-face nil
+		    :foreground "Blue"
+		    :slant 'italic)
+(set-face-attribute 'font-lock-important-face nil
+		    :foreground "Black"
+		    :background "Yellow"
+		    :weight 'bold
+		    :slant 'italic)
+(set-face-attribute 'font-lock-note-face nil
+		    :foreground "Dark Green"
+		    :slant 'italic)
+
 (mapc (lambda (mode)
 	(font-lock-add-keywords
 	 mode
@@ -71,10 +95,6 @@
 	   ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
            ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
       fixme-modes)
-(modify-face 'font-lock-fixme-face "Red" nil nil t nil t nil nil)
-(modify-face 'font-lock-study-face "Yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
 
 ;; TAB completes, SHIFT-TAB actually add a tab
 (setq dabbrev-case-replace t)
@@ -170,13 +190,21 @@
 
 (add-to-list 'mmm-mode-ext-classes-alist '(html-mode nil fancy-html))
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'load-path "~/.emacs.d/themes")
+(load-theme 'gruvbox-dark-medium t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("896e853cbacc010573cd82b6cf582a45c46abe2e45a2f17b74b4349ff7b29e34" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" "7f89ec3c988c398b88f7304a75ed225eaac64efa8df3638c815acc563dfd3b55" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" "2a9039b093df61e4517302f40ebaf2d3e95215cb2f9684c8c1a446659ee226b9" "5dc0ae2d193460de979a463b907b4b2c6d2c9c4657b2e9e66b8898d2592e3de5" "3898b4f9c3f6f2994f5010f766a7f7dac4ee2a5c5eb18c429ab8e71c5dad6947" "725a0ac226fc6a7372074c8924c18394448bb011916c05a87518ad4563738668" "e2fd81495089dc09d14a88f29dfdff7645f213e2c03650ac2dd275de52a513de" "be73fbde027b9df15a98a044bcfff4d46906b653cb6eef0d98ebccb7f8425dc9" default)))
  '(package-selected-packages
-   '(pug-mode go-mode slime mmm-mode swift-mode geiser magit use-package)))
+   (quote
+    (gotham-theme pug-mode go-mode slime mmm-mode swift-mode geiser magit use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
