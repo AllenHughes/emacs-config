@@ -163,6 +163,12 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+(use-package autothemer
+  :ensure t)
+
+(use-package mmm-mode
+  :ensure t)
+
 (require 'mmm-auto)
 (setq mmm-global-mode 'auto)
 
